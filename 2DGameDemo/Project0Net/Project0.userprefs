@@ -1,0 +1,20 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\camera\mainCameraCtrl.cs">
+    <Files>
+      <File FileName="Assets\Script\ctrlButton\buttonIteract.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\ctrlButton\buttonRotateCam.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\player\moveCtrl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\ctrlButton\ctrlButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\switch\switchUnlock.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\player\playerJumpColBox.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\terminal\terminal.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\player\keyBdMoveCtrl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\camera\mainCameraCtrl.cs" Line="28" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
