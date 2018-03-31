@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.project0.wuziqi.wuziqi.MainActivity"
+    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+    android:visibility="visible">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible"
+        android:id="@+id/startmenu">
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:text="人机对战 PVE"
+            android:id="@+id/pveStart"
+            android:textSize="35dp"
+            android:contextClickable="false"
+            android:elegantTextHeight="false"
+            android:clickable="false"
+            android:backgroundTint="#83571c"
+            android:layout_row="3"
+            android:layout_column="4"
+            android:shadowColor="#d33a3a3a"
+            android:layout_above="@+id/pvpStart"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="90dp"
+            android:text="退 出"
+            android:id="@+id/quitApp"
+            android:textSize="40sp"
+            android:backgroundTint="#c18434"
+            android:shadowColor="#d33a3a3a"
+            android:layout_below="@+id/pvpStart"
+            android:layout_alignRight="@+id/pvpStart"
+            android:layout_alignEnd="@+id/pvpStart" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="90dp"
+            android:text="设 置"
+            android:id="@+id/setting"
+            android:textSize="40dp"
+            android:backgroundTint="#c18434"
+            android:shadowColor="#d33a3a3a"
+            android:layout_below="@+id/pvpStart"
+            android:layout_alignLeft="@+id/pvpStart"
+            android:layout_alignStart="@+id/pvpStart" />
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:text="双人对战 PVP"
+            android:id="@+id/pvpStart"
+            android:singleLine="false"
+            android:textSize="35dp"
+            android:backgroundTint="#a97939"
+            android:shadowColor="#d33a3a3a"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/pveStart"
+            android:layout_alignStart="@+id/pveStart" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/startboard"
+        android:visibility="gone">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/returnToMenu"
+            android:src="@android:drawable/ic_menu_revert"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Chronometer
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chronometer"
+            android:layout_alignParentStart="true"
+            android:visibility="visible"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:format="%s" />
+
+        <com.project0.wuziqi.wuziqi.Board
+            android:id="@+id/board"
+            android:layout_width="330dp"
+            android:layout_height="330dp"
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
