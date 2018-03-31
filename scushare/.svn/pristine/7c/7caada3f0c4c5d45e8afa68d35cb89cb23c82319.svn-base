@@ -1,0 +1,98 @@
+package com.scushare.entity;
+
+import java.sql.Timestamp;
+
+public class FileInfo {
+	private String file_name;
+	private long file_size;
+	private Timestamp file_up_time;
+	private int file_up_user_id;
+	private String file_college;
+	private String file_major;
+	private String file_path;
+	private String file_md5;
+	private String file_abstract;
+	private int file_id;
+	private int file_page_num;
+	private String file_pic_path;
+	private String file_isverify;
+	
+	public String getFile_isverify() {
+		return file_isverify;
+	}
+	public void setFile_isverify(String file_isverify) {
+		this.file_isverify = file_isverify;
+	}
+	public int getFile_page_num() {
+		return file_page_num;
+	}
+	public void setFile_page_num(int file_page_num) {
+		this.file_page_num = file_page_num;
+	}
+	public String getFile_pic_path() {
+		return file_pic_path;
+	}
+	public void setFile_pic_path(String file_pic_path) {
+		this.file_pic_path = file_pic_path;
+	}
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+	public long getFile_size() {
+		return file_size;
+	}
+	public void setFile_size(long file_size) {
+		this.file_size = file_size;
+	}
+	public Timestamp getFile_up_time() {
+		return file_up_time;
+	}
+	public void setFile_up_time(Timestamp file_up_time) {
+		this.file_up_time = file_up_time;
+	}
+	public int getFile_up_user_id() {
+		return file_up_user_id;
+	}
+	public void setFile_up_user_id(int file_up_user_id) {
+		this.file_up_user_id = file_up_user_id;
+	}
+	public String getFile_college() {
+		return file_college;
+	}
+	public void setFile_college(String file_college) {
+		this.file_college = file_college;
+	}
+	public String getFile_major() {
+		return file_major;
+	}
+	public void setFile_major(String file_major) {
+		this.file_major = file_major;
+	}
+	public String getFile_path() {
+		return file_path;
+	}
+	public void setFile_path(String file_path) {
+		this.file_path = file_path;
+	}
+	public String getFile_md5() {
+		return file_md5;
+	}
+	public void setFile_md5(String file_md5) {
+		this.file_md5 = file_md5;
+	}
+	public String getFile_abstract() {
+		return file_abstract;
+	}
+	public void setFile_abstract(String file_abstract) {
+		this.file_abstract = file_abstract;
+	}
+	public int getFile_id() {
+		return file_id;
+	}
+	public void setFile_id(int file_id) {
+		this.file_id = file_id;
+	}
+}

@@ -1,0 +1,418 @@
+        body{
+    		margin: 0px;
+    		padding: 0px;
+    		background: url("../image/bac.png");
+    		background-attachment: fixed;
+    	}
+    	#navbar{
+    		margin:0px;
+    		padding: 0px;
+    		width: 100%;
+    		height: 50px;
+            background-color: rgba(0,0,0,0.7);
+    	}
+    	#nav-left{
+    		width: 10%;
+    		left: 100px;
+    		position: relative;
+    		float: left;
+
+    	}
+    	#catalog{
+    		width: 30%;
+    		position: relative;
+    		left: 20px;
+    		float: left;
+    	}
+    	#docu{
+    		height: 34px;
+    	}
+    	#catalog li{
+    		position: relative;
+    		float: left;
+    		margin-left: 60px;
+    		list-style: none;
+    	}
+    	#catalog span{
+    		color: #ffffff;
+    	}
+
+    	#user span{
+    		color: #ffffff;
+    	}
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+    	.underline-a:hover{
+    		text-decoration:underline;
+    	}
+    	.black-span{
+    		color: #000000;
+    	}
+    	.white-span{
+    		color: #ffffff;
+    	}
+    	.blue-span{
+    		color: #146C88;
+    	}
+    	.red-span{
+    		color: red;
+    	}
+    	#user{
+    		position: relative;
+    		float: left;
+    		top: 30%;
+    		left: 180px;
+    	}
+        #login_image{
+            position: relative;
+    		float: left;
+    		top: 25%;
+    		left: 180px;
+        }
+        #login_image img{
+            width:30px;
+            height:30px;
+        }
+    	#form{
+    		width: 50%;
+    		position: relative;
+    		float: left;
+    		left: 190px;
+    		top:25%;
+    	}
+    	#input-tag{
+    		width: 	300px;
+    		height: 30px;
+    		size:35px;
+    		float: left;
+    	}
+    	#submit{
+    		height: 30px;
+    	}
+    	#input{
+    		position: relative;
+    		float: left;
+    		border-radius: 3px;
+    		border:1px solid #000000;
+    		
+    	}
+    	#form{
+    		width: 450px;
+    	}
+    	#form button{
+    		width: 100px;
+    		height: 30px;
+    		position: relative;
+    		float:left;
+    		left: 15px;
+    		border-radius:3px;
+    	}
+    	#tool{
+    		position: relative;
+    		float: left;
+    		width: 100%;
+    		height: 36px;
+    		background:#EEEEEE;
+    		border-bottom: 1px solid #CCCCCC;
+    	}
+    	#download-save{
+    		position: relative;
+    		float: left;
+    		width: 350px;
+    		height: 100%;
+    	}
+    	#download-save button{
+    		position: relative;
+    		width: 88px;
+    		height: 28px;
+    		float: right;
+    		margin-right: 8px;
+    		margin-top: 5px;
+    		cursor: pointer;
+    	}
+    	#zoom{
+    		position: relative;
+    		float: left;
+    		width: 167px;
+    		height: 100%;
+    	}
+    	#pages{
+    		position: relative;
+    		float: left;
+    		width: 165px;
+    		height: 100%;
+    		background:#EEEEEE;
+    	}
+    	#share{
+    		position: relative;
+    		float: left;
+    		width: 424px;
+    		height: 100%;
+    		background:#EEEEEE;;
+    	}
+    	#oper{
+    		position: relative;
+    		float: left;
+    		width: 17.5%;
+    		height: 100%;
+    		background:#EEEEEE;
+    	}
+    	.right-border:not(#oper){
+    		border-right: 1px solid #AAAAAA;
+    	}
+    	#download{
+    		background:#F69F01;
+    		border:2px solid #F69F01;
+    		border-radius: 4px;
+    	}
+    	#save{
+    		background: #FBFBFB;
+    		border:2px solid #DDDDDD;
+    		border-radius: 4px;
+    	}
+    	#download img{
+    		width: 20px;
+    		height: 20px;
+    	}
+    	#save img{
+    		width: 15px;
+    		height: 15px;
+    	}
+    	.zoom-oper:not(#thumbnail){
+    		width: 15px;
+    		height: 15px;
+    		display: block;   
+    		cursor: pointer;		
+    	}
+    	#enlarge{
+    		position: fixed;
+    		left: 362px;
+    		top: 60px;
+    	}
+    	#reduce{
+    		position: fixed;
+    		left: 400px;
+    		top: 60px;
+    	}
+    	#fullscreen{
+    		position: fixed;
+    		left: 440px;
+    		top: 60px;
+    	}
+    	#thumbnail{
+    		width: 20px;
+    		height: 20px;
+    		display: block;   
+    		cursor: pointer;	
+    		position: fixed;
+    		left: 480px;
+    		top: 57px;
+    	}
+    	#pages div{
+    		position: relative;
+    		float: left;
+    		left: 25px;
+    		top: 5px;
+    	}
+    	#pages input{
+    		width: 36px;
+    		height: 20px;
+    	}
+    	#share img{
+    		float: right;
+    		width: 18px;
+    		height: 18px;
+    		margin-right: 20px;
+    		margin-top: 10px;
+    		cursor: pointer;
+    	}
+    	#oper img{
+    		float: left;
+    		width: 20px;
+    		height: 20px;
+    		margin-top: 10px;
+    		margin-left: 15px;
+    		cursor: pointer;
+    	}
+    	#title{
+    		width: 760px;
+    		height: 40px;
+    		position: relative;
+    		float: left;
+    		top: 10px;
+    		left: 165px;
+    		background:#ffffff;
+    		border:1px solid #AAAAAA;
+    	}
+    	#title #doc-icon{
+    		position: relative;
+    		float: left;
+    		top: 5px;
+    		left: 5px;
+    		width: 30px;
+    		height: 30px;
+    	}
+    	#title #arrow{
+    		position: relative;
+    		float: left;
+    		left: 500px;
+    		top: 5px;
+    		width: 30px;
+    		height: 30px;
+    		cursor: pointer;
+    	}
+    	#title #doc-title{
+    		position: relative;
+    		float: left;
+    		top: 10px;
+    		left: 25px;
+    	}
+    	#title #download-text{
+    		position: relative;
+    		float: right;
+    		top: 10px;
+    		right: 100px;
+    	}
+    	#title #download-score{
+    		position: relative;
+    		float: right;
+    		top: 10px;
+    	}
+    	#hide-info{
+    		width: 760px;
+    		height: 80px;
+    		position: relative;
+    		float: left;
+    		left: 165px;
+    		top:10px;
+    		display: none;
+    		background:white;
+    		border-bottom:1px solid #AAAAAA;
+    	}
+    	#main-mean{
+    		position: relative;
+    		float: left;
+    		left: 5px;
+    		top:15px;
+    	}
+    	#hide-info ul{
+    		position: relative;
+    		float: left;
+    		left: 5px;
+    		top:15px;
+    		margin-left: 0px;
+    		padding: 0px;
+    	}
+    	#hide-info li{
+    		list-style: none;
+    		float: left;
+    		margin-left: 5px;
+    	}
+    	.content{
+    		width: 760px;
+    		height: 1075px;
+    		position: relative;
+    		float: left;
+    		top: 10px;
+    		left: 165px;
+    		margin-top: 10px;
+    		margin-bottom: 5px;
+    		background:#ffffff;
+    		border:1px solid #AAAAAA;
+    	}
+    	.file{
+    		background:url("../image/12.2/0.jpg") no-repeat center;
+    		width:758px; 
+    		height:1073px;" 
+    	}
+    	#info{
+    		position: fixed;
+    		left:965px; 
+    		top:97px;
+    		width: 252px;
+    		height: 416px;
+    	}
+    	#info #personal-info{
+    		width: 100%;
+    		height: 86px;
+    		background: #F9F9F9;
+    	}
+    	#info #personal-info img{
+    		position: relative;
+    		float: left;
+    		margin-left: 10px;
+    		margin-top:10px;
+    		width: 62px;
+    		height: 62px;
+    	}
+    	#info #personal-info a{
+    		position: relative;
+    		float: left;
+    		left: 20px;
+    		top:10px;
+    	}
+    	#info #personal-info a:hover{
+    		text-decoration: underline;
+    	}
+    	#info #personal-info a span{
+    		color: #146C88;
+    	}
+    	#upload{
+    		position: relative;
+    		float: right;
+    		top:50px;
+    		right: 120px;
+    		font-size: 10px;
+    	}
+    	#upload-date{
+    		position: relative;
+    		float: right;
+    		right: 50px;
+    		top:35px;
+    		font-size: 10px;
+    	}
+    	#info button{
+    		width: 100%;
+    		height: 40px;
+    		margin-top: 10px;
+    		background:#F69F01;
+    		border:2px solid #F69F01;
+    		border-radius: 4px;
+    		cursor: pointer;
+    	}
+    	#info #relative-doc{
+    		width: 100%;
+    		height: 270px;
+    		margin-top: 10px;
+    		background:#F9F9F9;
+    	}
+    	#info #relative-doc p{
+    		margin-top: 3px;
+    		margin-bottom: 5px;
+    		position: relative;
+    		float: left;
+    		left: 5px;
+    	}
+    	#info #relative-doc ul{
+    		padding: 0px;
+    	}
+    	#info #relative-doc img:not(.star){
+    		float: left;
+            width: 18px;
+            height: 18px;
+            margin-left:3px;
+            margin-top:3px;
+            margin-right:3px;
+    	}
+    	#info #relative-doc li{
+    		margin-bottom: 5px;
+    		list-style: none;
+    		position: relative;
+    		float: left;
+    		font-size: 12px;
+    	}
+    	.underline{
+    		text-decoration: underline;
+    	}

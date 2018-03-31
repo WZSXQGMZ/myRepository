@@ -1,0 +1,70 @@
+package com.scushare.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.scushare.service.ManagerService;
+
+import scu.pojo.DataFile;
+import com.scushare.utils.*;
+
+@Controller
+public class IndexController {
+	
+	@Autowired
+	private ManagerService managerService;
+	
+	@RequestMapping("/index")
+	public String index(){
+		return "index";
+	}
+	@RequestMapping("/document")
+	public String document(){
+		return "document";
+	}
+	@RequestMapping("/searchResult")
+	public String searchResult(){
+		return "searchResult";
+	}
+	@RequestMapping("/preview")
+	public String preview(HttpServletRequest request, Model model){
+		String fileId = request.getParameter("fileID");
+		String fileType = null;
+		System.out.println(fileId);
+		if(fileId == null) {
+			return "redirect:/error";
+		}else {
+			DataFile file = null;
+			String FolderName ="";
+			String FolderName2 = "";
+			try{
+				file = managerService.getAccDataInfo(fileId);		 
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("查找准确资料失败！");
+				return "redirect:/error";
+			}
+			FolderName = file.getFilePath();
+			System.out.println(FolderName);
+			FolderName2 = FolderName.substring(FolderName.lastIndexOf("/")+1,FolderName.lastIndexOf("."));
+			fileType = FileType.judge(FolderName);
+			System.out.println(fileType);
+			model.addAttribute("fileName", file.getFileName());
+			model.addAttribute("fileIntroduce", file.getFileIntroduction());
+			model.addAttribute("fileCollege", file.getFileColloge());
+			model.addAttribute("fileMajor", file.getFileMajor());
+			model.addAttribute("fileUpTime", file.getFileUpTime());
+			model.addAttribute("fileId", fileId);
+			model.addAttribute("FolderName", FolderName2);
+			model.addAttribute("pageNum", file.getFilePageNum());
+			model.addAttribute("fileType", fileType);
+			return "preview";
+		}
+		
+	}
+}

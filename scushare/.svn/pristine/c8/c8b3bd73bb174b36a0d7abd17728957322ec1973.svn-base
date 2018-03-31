@@ -1,0 +1,369 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" autoFlush="true"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<%  String path = request.getContextPath(); 
+		String user_name = (String)request.getSession().getAttribute("user_name");
+		String user_chathead = (String)request.getSession().getAttribute("user_chathead");
+		if(user_chathead == null || user_chathead.equals("")){
+			user_chathead = "/userChathead/defaultChathead.jpg";
+		}
+	%>
+ 	<link rel="shortcut icon" href="<%=path%>/statics/image/shareico.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/statics/css/document.css">
+    <script src="<%=path%>/statics/js/jquery-3.2.1.slim.min.js"></script>
+	<title>文档</title>
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<div id="navbar">
+		<div id="nav-left">
+			<a href="#">
+				<img id="logo" src="<%=path%>/statics/image/sharelogo.png">
+			</a>
+		</div>
+		
+		<div id="catalog">
+			<ul>
+				<li>
+					<a class="nav-link" href="index">
+						<span>首页</span>
+					</a>
+				</li>
+				<li id="docu">
+					<a href="document"><span>文档</span></a>
+				</li>
+				<li>
+					<a class="nav-link" href="#">
+						<span>任务</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<%if(user_name == null){ %>
+			<div id="user">
+				<a href="loginPage"><span>登录</span></a>
+				<span>|</span>
+				<a href="registerPage"><span>注册</span></a>
+			</div>
+		<%}else{ %>
+			<div id="login_image">
+				<a href="userInfoPage"><img src="<%=path%><%=user_chathead %>"></a>
+			</div>
+		<%}%>
+		<div id="form">
+			<div id="input">
+			    <form >
+					<input id="input-tag" type="search" placeholder="在文库中查找">
+					<input type="submit" id="submit">
+			    </form>
+			</div>
+			<button type="submit">上传我的文档</button>
+		</div>
+	</div>
+	<div id="down-list" >
+		<ul>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+          <li><a href="#" ><span>资料分类</span></a></li>
+        </ul>
+    </div>
+    <div id="location">
+    	<span class="black-span">当前位置 :</span>
+    	<a id="current-location"><span class="blue-span">&nbsp;所有文档</span></a>
+    </div>
+    <div id="content">
+    	<div id="types">
+    		<div id="layer">
+    			<a><span class="blue-span">全部分类</span></a>
+    		</div>
+
+			<div id="type">
+				<ul>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+					<li><a href="#" ><span class="black-span">资料分类</span></a></li>
+				</ul>
+			</div>
+
+			<div id="filter">
+				<ul>
+					<li class="left-li"><a href="#" class="all"><span class="black-span">全部格式</span></a></li>
+					<li class="left-li"><a href="#" class="format"><span class="black-span">PDF</span></a></li>
+					<li class="left-li"><a href="#" class="format"><span class="black-span">DOC</span></a></li>
+					<li class="left-li"><a href="#" class="format"><span class="black-span">PPT</span></a></li>
+					<li class="left-li"><a href="#" class="format"><span class="black-span">XLS</span></a></li>
+					<li class="left-li"><a href="#" class="format"><span class="black-span">TXT</span></a></li>
+				</ul>
+			</div>
+    	</div>
+    	<div  class="bor">
+			<h3>
+				<img src="<%=path%>/statics/image/PDF.png">
+				<a href="#" class="title">自然哲学的数学原理</a>
+				<ul class="like-share">
+                    <li class="like" >收藏</li>
+                    <li class="share">分享</li>
+				</ul>
+			</h3>
+			<div class="material">
+				<a href="#"></a>
+				<div class="info">
+					<div class="desc">
+						霍金教授是一位独一无二的人，不仅在剑桥，在全世界霍金教授都将得到深切的缅怀。他对科学知识的卓越贡献，对科学和数学的普及，给世人留下了不可磨灭的遗产。他的品格是成千上万人的灵感，他将会被深深怀念。”剑桥大学副校长Stephen Toope教授如是评价道。
+					</div>
+					<div class="intro">
+						<span>上传时间：</span>
+						<span>2012-07-03</span>
+						<span class="margin">|</span>
+						<span>上传者：</span>
+						<span>hello_sq</span>
+						<span class="margin">|</span>
+						<span>浏览：</span>
+						<span>5次</span>
+						<span class="margin">|</span>
+						<span>星级：</span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div  class="bor">
+			<h3>
+				<img src="<%=path%>/statics/image/PDF.png">
+				<a href="#" class="title">自然哲学的数学原理</a>
+				<ul class="like-share">
+                    <li class="like" >收藏</li>
+                    <li class="share">分享</li>
+				</ul>
+			</h3>
+			<div class="material">
+				<a href="#"></a>
+				<div class="info">
+					<div class="desc">
+						霍金教授是一位独一无二的人，不仅在剑桥，在全世界霍金教授都将得到深切的缅怀。他对科学知识的卓越贡献，对科学和数学的普及，给世人留下了不可磨灭的遗产。他的品格是成千上万人的灵感，他将会被深深怀念。”剑桥大学副校长Stephen Toope教授如是评价道。
+					</div>
+					<div class="intro">
+						<span>上传时间：</span>
+						<span>2012-07-03</span>
+						<span class="margin">|</span>
+						<span>上传者：</span>
+						<span>hello_sq</span>
+						<span class="margin">|</span>
+						<span>浏览：</span>
+						<span>5次</span>
+						<span class="margin">|</span>
+						<span>星级：</span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div  class="bor">
+			<h3>
+				<img src="<%=path%>/statics/image/PDF.png">
+				<a href="#" class="title">自然哲学的数学原理</a>
+				<ul class="like-share">
+                    <li class="like" >收藏</li>
+                    <li class="share">分享</li>
+				</ul>
+			</h3>
+			<div class="material">
+				<a href="#"></a>
+				<div class="info">
+					<div class="desc">
+						霍金教授是一位独一无二的人，不仅在剑桥，在全世界霍金教授都将得到深切的缅怀。他对科学知识的卓越贡献，对科学和数学的普及，给世人留下了不可磨灭的遗产。他的品格是成千上万人的灵感，他将会被深深怀念。”剑桥大学副校长Stephen Toope教授如是评价道。
+					</div>
+					<div class="intro">
+						<span>上传时间：</span>
+						<span>2012-07-03</span>
+						<span class="margin">|</span>
+						<span>上传者：</span>
+						<span>hello_sq</span>
+						<span class="margin">|</span>
+						<span>浏览：</span>
+						<span>5次</span>
+						<span class="margin">|</span>
+						<span>星级：</span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div  class="bor">
+			<h3>
+				<img src="<%=path%>/statics/image/PDF.png">
+				<a href="#" class="title">自然哲学的数学原理</a>
+				<ul class="like-share">
+                    <li class="like" >收藏</li>
+                    <li class="share">分享</li>
+				</ul>
+			</h3>
+			<div class="material">
+				<a href="#"></a>
+				<div class="info">
+					<div class="desc">
+						霍金教授是一位独一无二的人，不仅在剑桥，在全世界霍金教授都将得到深切的缅怀。他对科学知识的卓越贡献，对科学和数学的普及，给世人留下了不可磨灭的遗产。他的品格是成千上万人的灵感，他将会被深深怀念。”剑桥大学副校长Stephen Toope教授如是评价道。
+					</div>
+					<div class="intro">
+
+						<span>上传时间：</span>
+						<span>2012-07-03</span>
+						<span class="margin">|</span>
+						<span>上传者：</span>
+						<span>hello_sq</span>
+						<span class="margin">|</span>
+						<span>浏览：</span>
+						<span>5次</span>
+						<span class="margin">|</span>
+						<span>星级：</span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="change-page">
+			<ul>
+				<li class="page" id="page1"><span class="black-span">1</span></li>
+				<li class="page" id="page2"><span class="black-span">2</span></li>
+				<li class="page" id="page3"><span class="black-span">3</span></li>
+				<li class="page" id="page4"><span class="black-span">4</span></li>
+				<li class="page" id="page5"><span class="black-span">5</span></li>
+				<li class="page" id="page6"><span class="black-span">6</span></li>
+				<li class="page" id="page7"><span class="black-span">7</span></li>
+				<li class="page" id="page8"><span class="black-span">8</span></li>
+				<li class="page" id="page9"><span class="black-span">9</span></li>
+				<li class="page" id="page10"><span class="black-span">10</span></li>
+				<li class="next-page" id="next-page"><span class="black-span">下一页</span></li>
+			</ul>
+		</div>
+    </div>
+    <div id="mission">
+		<button>发布找文档任务</button>
+		<p>
+			找不到需要的文档?<br/>
+			<span>提交需求</span>，请网友为你提供文档
+		</p>
+	</div>
+    <script type="text/javascript">
+    	//文档分类的显示与隐藏
+			$(function(){   
+	                $(docu).hover(  
+	                    function(){  
+	                        $("#down-list").show();  
+	                    } ,  
+	                    function(){  
+	                         $("#down-list").hide();
+	                    }   
+	                ) ;  
+	            }) ;    
+			$(function(){  
+	                $("#down-list").hover(  
+	                    function(){  
+	                        $("#down-list").show();  
+	                    } ,  
+	                    function(){  
+	                         $("#down-list").hide();
+	                    }   
+	                ) ;  
+	            }) ;    
+
+			//回到顶部的显示与隐藏
+			$(function(){  
+	                $("#back-img").hover(  
+	                    function(){  
+	                    	$("#back-img").hide();
+	                        $("#back-text").show();    
+	                    } ,    
+	                ) ;  
+	            }) ;  
+			$(function(){  
+	                $("#back-text").hover(  
+	                    function(){    
+	                    } ,    
+	                    function(){  
+	                         $("#back-text").hide();
+	                         $("#back-img").show();
+	                    }  
+	                ) ;  
+	            }) ;  
+
+			//页面切换的鼠标移进移出事件
+			$(function(){  
+	                $(".page").hover(  
+	                    function(){    
+	                    	document.getElementById(this.id).style.border = "1px solid #000000";
+	                    } ,    
+	                    function(){  
+	                        document.getElementById(this.id).style.border = "1px solid #F8F8F8";
+	                    }  
+	                ) ;  
+	            }) ; 
+            $(function(){  
+                $(".next-page").hover(  
+                    function(){    
+                    	this.style.border = "1px solid #000000";
+                    } ,    
+                    function(){  
+                        this.style.border = "1px solid #F8F8F8";
+                    }  
+                ) ;  
+            }) ;  
+
+            //鼠标悬停推荐文档产生下划线事件
+            $(function(){  
+	                $(".underline").hover(  
+	                    function(){    
+	                    	this.style.color = "blue";
+	                    	this.style.textDecoration = "underline";
+	                    } ,    
+	                    function(){  
+	                    	this.style.color = "#000000";
+	                        this.style.textDecoration = "none";
+	                    }  
+	                ) ;  
+	            }) ; 
+
+
+			//回到顶部的点击事件
+
+			$("#back-text").bind("click",function(){
+	  			scrollTo(0,0);
+			});
+
+			//信息的隐藏与显示
+			$("#down-icon")  
+    </script>
+		
+</body>
+</html>
+<% out.flush();%>

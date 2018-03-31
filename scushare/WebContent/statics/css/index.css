@@ -1,0 +1,182 @@
+        body{
+    		margin: 0px;
+    		padding: 0px;
+    		background: url("../image/bac.png");
+    		background-attachment: fixed;
+    	}
+    	#navbar{
+    		margin:0px;
+    		padding: 0px;
+    		width: 100%;
+    		height: 50px;
+            background-color: rgba(0,0,0,0.7);
+    	}
+    	#nav-left{
+    		width: 10%;
+    		left: 100px;
+    		position: relative;
+    		float: left;
+
+    	}
+    	#catalog{
+    		width: 30%;
+    		position: relative;
+    		left: 20px;
+    		float: left;
+    	}
+    	#docu{
+    		height: 34px;
+    	}
+    	#catalog li{
+    		position: relative;
+    		float: left;
+    		margin-left: 60px;
+    		list-style: none;
+    	}
+        a{
+            text-decoration: none;
+        }
+    	a:hover{
+    		text-decoration:underline;
+    	}
+    	span{
+    		color: #ffffff;
+    	}
+    	#user{
+    		position: relative;
+    		float: left;
+    		top: 30%;
+    		left: 230px;
+    	}
+        #login_image{
+            position: relative;
+    		float: left;
+    		top: 25%;
+    		left: 230px;
+        }
+        #login_image img{
+            width:30px;
+            height:30px;
+        }
+    	#form{
+    		width: 50%;
+    		position: relative;
+    		float: left;
+    		left: 250px;
+    		top:25%;
+    	}
+    	#input-tag{
+    		width: 	300px;
+    		height: 30px;
+    		size:35px;
+    		float: left;
+    	}
+    	#submit{
+    		height: 30px;
+    	}
+    	#input{
+    		position: relative;
+    		height:30px;
+    		float: left;
+    		border-radius: 3px;
+    		border:1px solid #000000;
+    		
+    	}
+    	#form{
+    		width: 450px;
+    	}
+    	#form button{
+    		width: 100px;
+    		height: 30px;
+    		position: relative;
+    		float:left;
+    		left: 15px;
+    		border-radius:3px;
+    	}
+    	#down-list{
+    		position: fixed;
+    		left: 200px;
+    		height: 452px;
+    		width: 182px;
+    		padding: 0px;
+    		display: none;
+    	}
+    	#pic{
+    		background:url("../image/pic.jpg");
+    		width:88%;
+    		height: 400px;
+    		position: relative;
+    		float: left;
+    		top:20px;
+    		left: 5%;
+    	}
+    	#openbook{
+    		position: absolute;
+    		float: left;
+    		top:490px;
+    		left:90px;
+    	}
+    	#openbook span{
+    		font-size: 18px;
+    		color: black;
+    	}
+        #back-img{
+            width: 48px;
+            height: 48px;
+            position: fixed;
+            right: 5px;
+            bottom: 100px;
+        }
+        #back-text{
+            width: 40px;
+            height: 40px;
+            position: fixed;
+            right: 5px;
+            bottom: 100px;
+            display: none;
+        }
+        #back-text span{
+            color:black;
+        }
+        #novels{
+        	height:340px;
+        }
+         #novels ul{
+            position: relative;
+            heigeht:340px;
+            float: left;
+            left: 20px;
+            top:80px;
+            margin-bottom:20px;
+        }
+        #novels li{
+        	width: 205px;
+        	heigeht:340px;
+            position: relative;
+            float: left;
+            margin-left: 45px;
+            list-style: none;
+        }
+        #novels img{
+        	width: 190px;
+        	height:265px;   	
+        	    	
+        }
+        #novels span{
+        	display:block;
+        	text-align:center;
+        	margin-left:0px;
+        	width:190px;
+        	overflow: hidden;
+			text-overflow:ellipsis;
+			white-space: nowrap;
+        }
+        .black_text{
+            margin-left: 35px;
+            color: black;
+        }
+        .blue_text{
+            margin-left: 35px;
+            color: #146C88;
+            font-size: 10px;
+        }

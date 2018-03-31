@@ -1,0 +1,223 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<%  String path = request.getContextPath(); 
+		String user_name = (String)request.getSession().getAttribute("user_name");
+		String user_chathead = (String)request.getSession().getAttribute("user_chathead");
+		if(user_chathead == null || user_chathead.equals("")){
+			user_chathead = "/userChathead/defaultChathead.jpg";
+	}
+	%>
+	<link rel="shortcut icon" href="<%=path%>/statics/image/shareico.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/statics/css/preview.css">
+    <script type="text/javascript" src="<%=path%>/statics/js/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/statics/js/jquery.media.js"></script>
+	<title>查看</title>
+</head>
+<body>
+	<div id="navbar" >
+ 		<div id="nav-left">
+	  		<a href="#" >
+	  			<img id ="logo" src="<%=path%>/statics/image/sharelogo.png" >
+	  		</a>
+  		</div>
+
+  		<div id="catalog">
+			<ul>
+				<li >
+					<a class="nav-link" href="index"><span>首页</span></a>
+				</li>
+				<li id="docu">
+					<a class="nav-link dropdown-toggle" href="document" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span>文档</span>
+					</a>
+		      	</li>
+				<li >
+					<a class="nav-link" href="#"><span>任务</span></a>
+				</li>
+		    </ul>	
+		</div>
+		<%if(user_name == null){ %>
+			<div id="user">
+				<a href="loginPage"><span>登录</span></a>
+				<span>|</span>
+				<a href="registerPage"><span>注册</span></a>
+			</div>
+		<%}else{ %>
+		<div id="login_image">
+			<a href="userInfoPage"><img src="<%=path%><%=user_chathead %>"></a>
+		</div>
+		<%}%>
+		<div id="form">
+			<div id="input">
+			    <form >
+					<input id="input-tag" type="search" placeholder="在文库中查找">
+					<input type="submit" id="submit">
+			    </form>
+			</div>
+			<button type="submit">上传我的文档</button>
+		</div>
+	</div>
+
+	<div id="tool">
+		<div id="download-save" class="right-border">
+			<button id="save">
+				<img src="<%=path%>/statics/image/save.png">
+				<span>收藏</span>
+			</button>
+			<button id="download">
+				<img src="<%=path%>/statics/image/download.png">
+					<span>下载</span>
+			</button>   
+		</div>
+		<div id="zoom" class="right-border">
+			<img class="zoom-oper" id="enlarge" src="<%=path%>/statics/image/enlarge.png">
+			<img class="zoom-oper" id="reduce" src="<%=path%>/statics/image/reduce.png">
+			<img class="zoom-oper" id="fullscreen" src="<%=path%>/statics/image/fullscreen.png">
+			<img class="zoom-oper" id="thumbnail" src="<%=path%>/statics/image/thumbnail.png">
+		</div>
+		<div id="pages" class="right-border">
+			<div>
+				<
+				<input>
+				/
+				<span id="total-pages">2</span>
+				>
+			</div>
+		</div>
+		<div id="share" class="right-border">
+			<img id="share-link" src="<%=path%>/statics/image/share.png">
+			<img id="code" src="<%=path%>/statics/image/code.png">
+		</div>
+		<div id="oper" class="right-border">
+			<img id="tip-off" src="<%=path%>/statics/image/tip-off.png">
+			<img id="comment" src="<%=path%>/statics/image/comment.png">
+		</div>
+	</div>
+	<div id="title">
+		<img  id="doc-icon" src="<%=path%>/statics/image/PDF.png">
+		<span id="doc-title">做爱情公主,不做爱情债主</span>
+		<span id="download-text">下载积分:</span>
+		<span id="download-score" class="red-span">900</span>
+		<img id="arrow" src="<%=path%>/statics/image/down-arrow.png" alt="1">
+	</div>
+	<div id="hide-info">
+		<span id="main-mean">内容提示：做爱情公主,不做爱情债主</span>
+		<span></span>
+		<ul>
+			<li>文档格式：<span>DOCX</span></li>
+			<li>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;浏览次数：<span>0</span></li>
+			<li>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;上传日期：<span>2015-02-23 20:03:30</span></li>
+			<li>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;文档星级；<img src="../image/4.5.bmp"></li>
+		</ul>
+
+	</div>
+	<div class="content">
+		<canvas class="file" zoom="1" ls="1" ss="0" id="page_1">	
+		</canvas>
+	</div>
+	<div class="content">
+	<canvas class="file" zoom="1" ls="1" ss="0" id="page_1">	
+		</canvas>	
+	</div>
+	<div class="content">	
+	<canvas class="file" zoom="1" ls="1" ss="0" id="page_1">	
+		</canvas>	
+	</div>
+
+
+	<div id="info">
+		<div id="personal-info">
+			<img src="<%=path%>/statics/image/profile.jpg">
+			<a href="#" id="name"><span>向俊林乖儿子</span></a>
+			<span id="upload">上传于:</span>
+			<span id="upload-date">2015-02-23</span>
+		</div>
+		<button>
+			下载此文档
+		</button>
+		<div id="relative-doc">
+			<p>
+				推荐文档
+			</p>
+			<ul id="file-info">
+				<li>
+					<a href="#" title="关于向俊林213事迹宣传工作的开展">
+						<img src="<%=path%>/statics/image/PDF.png">
+						<span  class="black-span">
+							<span class="underline">关于向俊林213事迹的宣传工作的开展</span><br/>
+							星级：
+							<img class="star" src="<%=path%>/statics/image/5.bmp"></span>
+							<span id="page-num">3</span>页
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" title="关于向俊林213事迹宣传工作的开展">
+						<img src="<%=path%>/statics/image/PDF.png">
+						<span  class="black-span">
+							<span class="underline">关于向俊林213事迹的宣传工作的开展</span><br/>
+							星级：
+							<img class="star" src="<%=path%>/statics/image/5.bmp"></span>
+							<span id="page-num">3</span>页
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" title="关于向俊林213事迹宣传工作的开展">
+						<img src="<%=path%>/statics/image/PDF.png">
+						<span  class="black-span">
+							<span class="underline">关于向俊林213事迹的宣传工作的开展</span><br/>
+							星级：
+							<img class="star" src="<%=path%>/statics/image/5.bmp"></span>
+							<span id="page-num">3</span>页
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" title="关于向俊林213事迹宣传工作的开展">
+						<img src="<%=path%>/statics/image/PDF.png">
+						<span  class="black-span">
+							<span class="underline">关于向俊林213事迹的宣传工作的开展</span><br/>
+							星级：
+							<img class="star" src="<%=path%>/statics/image/5.bmp"></span>
+							<span id="page-num">3</span>页
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" title="关于向俊林213事迹宣传工作的开展">
+						<img src="<%=path%>/statics/image/PDF.png">
+						<span  class="black-span">
+							<span class="underline">关于向俊林213事迹的宣传工作的开展</span><br/>
+							星级：
+							<img class="star" src="<%=path%>/statics/image/5.bmp"></span>
+							<span id="page-num">3</span>页
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$("#arrow").bind("click",function(){
+			var status = document.getElementById("arrow").alt;
+			if(status==1){
+				$("#hide-info").show();
+				$("#arrow").attr('src', '../image/up-arrow.png');
+				document.getElementById("arrow").alt = 2;
+			}
+			else{
+				$("#hide-info").hide();
+				$("#arrow").attr('src', '../image/down-arrow.png');
+				document.getElementById("arrow").alt = 1;
+			}
+		});
+	</script>
+</body>
+</html>
+<% out.flush();%>

@@ -1,0 +1,121 @@
+function checkUploadForm(){
+	if($("#file").val() == ''){
+		alert("请选择文件");
+		return false;
+	}
+	var postfix = $("#file").val().toLowerCase().split('.').splice(-1);
+	if(postfix != "docx" 
+		&& postfix != "doc" 
+		&& postfix != "ppt" 
+		&& postfix != "pptx"
+		&& postfix != "xls"
+		&& postfix != "xlsx"
+		&& postfix != "pdf"){
+		alert("请选择.doc,.docx,.ppt,.pptx,.excel,.excelx,pdf文件");
+		return false;
+	}
+	
+	if(document.getElementById("file").files[0].size / (1024*1024) > 500){
+		alert("文件大小不能超过100MB");
+		return false;
+	}
+	if($("#first").find("option:selected").text() == "请选择"){
+		alert("请选择学院");
+		return false;
+	}
+	if($("#second").find("option:selected").text() == "请选择"){
+		alert("请选择专业");
+		return false;
+	}
+
+
+}
+
+function upload(){
+	if(checkUploadForm() == false){
+		return false;
+	}
+	$("#upload_button").attr("disabled", true); 
+	
+	var interval = setInterval(function(){getUploadProgress("file");}, 500);
+	doUpload(interval);
+	
+	return true;
+}
+
+function getUploadProgress(id){
+	//console.log("callAjax");
+	$.ajax({
+		url:"getUserUploadProgress",
+		type:"post",
+		dataType:"text",
+		data:{
+			file_name:document.getElementById(id).files[0].name,
+		},
+		success:function(responseText){
+			if(responseText == "not_found"){
+				//console.log("not_found");
+				return;
+			}
+			var progress = parseInt(responseText)/document.getElementById(id).files[0].size;
+			if(progress > 1){
+				progress = 1;
+			}
+
+			if(progress*100 < parseInt($("#upload_progress").text())){
+				return;
+			}
+
+			$("#upload_progress").text(parseInt(progress * 100));
+		},
+		error:function(){
+			console.log("getProgressError");
+		}
+	
+	})
+}
+
+function doUpload(interval){
+	$("#upload_statu").text("正在上传文件");
+	$("#upload_progress").text("0");
+	$("#percent_sign").text("%");
+	$.ajax({
+		url:"doUpload",
+		type:"post",
+		dataType:"text",
+		data: new FormData(document.getElementById("upload_form")),
+		processData: false,
+		contentType: false,
+		success:function(data){
+			console.log(data);
+			clearInterval(interval);
+			$("#upload_progress").text("");
+			$("#percent_sign").text("");
+			if(data == "user_name_not_found"){
+				//alert("上传失败");
+				$("#upload_statu").text("上传失败");
+				return;
+			}
+			if(data == "upload_failed"){
+				//alert("上传失败");
+				$("#upload_statu").text("上传失败");
+				return;
+			}
+			if(data == "upload_success"){
+				//alert("上传成功");
+				$("#upload_statu").text("上传成功");
+			}
+			$("#upload_progress").text("");
+			$("#percent_sign").text("");
+			$("#upload_statu").text("上传成功，管理员正在审核资料");
+		},
+		error:function(){
+			console.log("UploadError");
+			alert("上传失败");
+			$("#upload_progress").text("");
+			$("#percent_sign").text("");
+			$("#upload_statu").text("上传失败");
+		}
+	})
+	
+}

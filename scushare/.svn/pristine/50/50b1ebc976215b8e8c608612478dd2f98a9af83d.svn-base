@@ -1,0 +1,57 @@
+package scushare;
+
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.ContextHierarchy;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import com.scushare.config.RootConfig;
+import com.scushare.config.WebConfig;
+import com.scushare.mapper.ManagerMapper;
+import com.scushare.mapper.PageMapper;
+import com.scushare.utils.Page;
+
+import scu.pojo.File;
+import scu.pojo.Manager;
+import scu.pojo.User;
+
+@RunWith(SpringJUnit4ClassRunner.class)//表示整合JUnit4进行测试
+@WebAppConfiguration
+@ContextHierarchy({
+    @ContextConfiguration(name = "parent", classes = RootConfig.class),
+    @ContextConfiguration(name = "child", classes = WebConfig.class)})
+public class ManagerMapperTest {
+
+	@Autowired ApplicationContext ctx;
+	
+	@Before
+	public void setUp() {
+	}
+	
+//	@Test
+//	public void testGetManagerList() {
+//		ManagerMapper mapper = ctx.getBean(ManagerMapper.class);
+//		
+//		List<Manager> mgr = mapper.getManagerList();
+//		for(Manager manager:mgr){
+//			System.out.println("管理员"+manager.getManagerName());
+//		}
+//		
+//	}
+	@Test
+	public void testUserList(){
+		PageMapper mapper = ctx.getBean(PageMapper.class);
+		List<User> userList = mapper.getUserList(null,null,"rua", 0, 5);
+		System.out.println(userList.size());
+		for(User user:userList){
+            System.out.println("用户ID："+user.getUserId());
+		}
+	}
+}

@@ -1,0 +1,61 @@
+package com.scushare.mapper;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import com.scushare.entity.FileInfo;
+import com.scushare.entity.UserLogInfo;
+
+import scu.pojo.User;
+
+public interface UserMapper {
+
+	@Select("select user_name,user_password from user where user_name=#{user_name}")
+	UserLogInfo findByUname(@Param("user_name") String user_name);
+
+	@Select("select user_name from user where user_name=#{user_name}")
+	String findUserName(@Param("user_name") String user_name);
+	@Select("select user_mail from user where user_mail=#{user_mail}")
+	String findUserMail(@Param("user_mail") String user_mail);
+	
+	@Select("SELECT user_id FROM user WHERE user_name=#{user_name}")
+	int getUserIdByName(@Param("user_name") String user_name);
+	
+	@Insert("insert into user(user_name, user_gender, user_college, user_major, user_mail, "
+			+ "user_phone_num, user_reg_time, user_reg_ip, user_limit, user_grade, user_password)"
+			+ "values(#{userInfo.userName},#{userInfo.userGender},#{userInfo.userCollege},#{userInfo.userMajor},#{userInfo.userMail},"
+			+ "#{userInfo.userPhoneNum},#{user_reg_date},#{userInfo.userRegIp},#{userInfo.userLimit},#{userInfo.userGrade},#{userInfo.userPassword})")
+	//@Options(useGeneratedKeys = true, keyProperty = "user_id")
+	int insertRegisterInfo(@Param("userInfo") User userInfo, @Param("user_reg_date") Timestamp user_reg_date);
+	
+	@Insert("INSERT INTO file(file_name,file_size,file_up_time,file_up_user_id,file_college,file_major,file_path,file_md5,file_abstract,file_pic_path,file_page_num,file_isverify)"
+			+ " VALUES(#{file_name},#{file_size},#{date},#{user_id},#{file_college},#{file_major},#{file_path},#{file_md5},#{file_abstract},#{file_pic_path},#{file_page_num},'Œ¥…Û∫À')")
+	int insertFileInfo(@Param("file_name") String file_name, @Param("file_size") Long file_size, @Param("date") Timestamp date
+						, @Param("user_id") int user_id, @Param("file_college") String file_college, @Param("file_major") String file_major
+						, @Param("file_path") String file_path, @Param("file_md5") String file_md5,@Param("file_abstract") String file_abstract
+						, @Param("file_pic_path") String file_pic_path, @Param("file_page_num") int file_page_num );
+	@Insert("INSERT INTO file(file_name,file_size,file_up_time,file_up_user_id,file_college,file_major,file_path,file_md5,file_abstract,file_pic_path,file_page_numfile_isverify)"
+			+ " VALUES(#{file_name},#{file_size},#{file_up_time},#{file_up_user_id},#{file_college},#{file_major},#{file_path},#{file_md5},#{file_abstract},#{file_pic_path},#{file_page_num},'Œ¥…Û∫À')")
+	@Options(useGeneratedKeys = true, keyProperty = "file_id")
+	int insertFileInfoByFileClass(@Param("fileInfo") FileInfo fileInfo);
+	
+	
+	@Select("SELECT file_path FROM file WHERE file_college=#{file_college} AND file_major=#{file_major} AND file_md5=#{file_md5}")
+	List<String> getFilePathByMd5AndMajor(@Param("file_college") String file_college, @Param("file_major") String file_major, @Param("file_md5")String file_md5);
+	@Select("SELECT file_path FROM file WHERE file_md5=#{file_md5}")
+	List<String> getFilePathByMd5(@Param("file_md5")String file_md5);
+	//@Insert("INSERT INTO user(user_name, user_mail) values(#{user_name},#{user_mail}")
+	//int insertUserMail(@Param("user_name") String user_name, @Param("user_mail") String user_mail);
+	
+	@Select("SELECT user_name FROM user WHERE user_name=#{user_name} AND user_mail=#{user_mail}")
+	String getUserByNameAndMail(@Param("user_name") String user_name, @Param("user_mail") String user_mail);
+	
+	@Update("UPDATE user SET user_limit=#{user_limit} WHERE user_name=#{user_name}")
+	int updateUserLimitByName(@Param("user_name") String user_name, @Param("user_limit") String user_limit);
+}

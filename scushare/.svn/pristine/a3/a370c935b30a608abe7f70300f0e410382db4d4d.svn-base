@@ -1,0 +1,62 @@
+package com.scushare.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.scushare.service.UserLogService;
+
+@Controller
+public class UserController {
+	@Autowired
+	UserLogService userLogService;
+	
+	@RequestMapping("/homePage")
+	public ModelAndView homePage(ModelAndView mv, HttpServletRequest request) {
+		userLogService.updateLoginStatu(request);
+		mv.setViewName("homePage");
+		return mv;
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "redirect:/loginPage";
+	}
+	@RequestMapping("/loginPage")
+	public String getLoginPage(HttpServletRequest request) {
+		userLogService.updateLoginStatu(request);
+		return "U-login";
+	}
+	
+	@RequestMapping("/registerPage")
+	public String register(HttpServletRequest request) {
+		userLogService.updateLoginStatu(request);
+		return "register";
+	}
+	
+	@RequestMapping("/uploadPage")
+	public String uploadPage(HttpServletRequest request) {
+		userLogService.updateLoginStatu(request);
+		return "userhomepage_userUpload";
+	}
+	
+	@RequestMapping("/uploadRecPage")
+	public String getUploadRecPage(HttpServletRequest request) {
+		userLogService.updateLoginStatu(request);
+		//÷ÿ∂®œÚ
+		return "redirect:/userUploadRecPaging";
+	}
+	@RequestMapping("/userHomepage")
+	public String getUserHomepage() {
+		return "redirect:/uploadRecPage";
+	}
+
+	@RequestMapping("/uploadChatheadPage")
+	public String getUploadChatheadPage(HttpServletRequest request) {
+		userLogService.updateLoginStatu(request);
+		return "userhomepage_userChatheadModify";
+	}
+}

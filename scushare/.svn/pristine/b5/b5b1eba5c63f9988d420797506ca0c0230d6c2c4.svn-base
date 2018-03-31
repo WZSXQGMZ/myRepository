@@ -1,0 +1,282 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	String user_name = null;
+	user_name = (String)request.getSession().getAttribute("user_name");
+	if(user_name == null){
+		response.sendRedirect("homePage");
+	}
+	Integer user_id = (Integer)request.getSession().getAttribute("user_id");
+	String user_chathead = (String)request.getSession().getAttribute("user_chathead");
+	if(user_chathead == null || user_chathead.equals("")){
+		user_chathead = "/userChathead/defaultChathead.jpg";
+	}
+%>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>上传文件</title>
+
+
+    <%  String path = request.getContextPath(); %>
+    <!--UPLOAD STYLES-->
+    <link href="<%=path%>/statics/css/wizard/normalize.css" rel="stylesheet" />
+    <link href="<%=path%>/statics/css/wizard/wizardMain.css" rel="stylesheet" />
+    <link href="<%=path%>/statics/css/wizard/jquery.steps.css" rel="stylesheet" />
+    
+	<link href="<%=path%>/statics/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="<%=path%>/statics/css/font-awesome.css" rel="stylesheet" />
+    <!-- PAGE LEVEL STYLES -->
+    <link href="<%=path%>/statics/css/bootstrap-fileupload.min.css" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="<%=path%>/statics/css/basic.css" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="<%=path%>/statics/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='<%=path%>/statics/css/font.css' rel='stylesheet' type='text/css' />
+    <style>
+    		select
+            {
+               width                    : 17.6em;
+               height                   : 2.0em;
+               padding                  : 0.2em 0.4em 0.2em 0.4em;
+               vertical-align           : middle;
+               border                   : 1px solid #94c1e7;
+               -moz-border-radius       : 0.2em;
+               -webkit-border-radius    : 0.2em;
+               border-radius            : 0.2em;
+               -webkit-appearance       : none;
+               -moz-appearance          : none;
+               appearance               : none;
+               background               : #ffffff;
+               font-family              : SimHei;
+               font-size                : 1.1em;
+               color                    : RGBA(102,102,102,1);
+               cursor                   : pointer;
+            }
+            p
+            {
+            	font-size: 1.8em;
+            }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.jsp">川大资料网</a>
+            </div>
+
+            <div class="header-right">
+
+                <a href="loginPage" class="btn btn-primary ">重新登录</a>
+                <a href="homePage" class="btn btn-primary ">返回首页</a>
+                <a href="doLogout" class="btn btn-danger" title="注销"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="<%=path%><%=user_chathead %>" class="img-thumbnail" />
+
+                            <div class="inner-text">
+								<%out.print(user_name); %>
+								<%out.print("<br />"); %>
+								<%out.print("UID: " + String.valueOf(user_id)); %>
+                            	<br />
+                                <small>Last Login : rua </small>
+                            </div>
+                        </div>
+
+                    </li>
+
+
+                    <li>
+                        <a href="uploadRecPage"><i class="fa fa-dashboard "></i>我的上传</a>
+                    </li>
+                  
+                    <li>
+                        <a href="UMDownloadQuery"><i class="fa fa-flash "></i>&ensp;我的下载 </a>
+                        
+                    </li>
+                      <li>
+                        <a class="active-menu" href="uploadPage"><i class="fa fa-anchor "></i>上传文件</a>
+                    </li>
+                     <li>
+                        <a href="userInfoPage"><i class="fa fa-bug "></i>我的资料</a>
+                    </li>
+                    
+                    <li>
+                        <a href="userhomepage_userCommentRec.jsp"><i class="fa fa-edit "></i>我的评论</a>
+                    </li>
+                   
+                </ul>
+
+            </div>
+
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-head-line">资料上传</h1>
+                        <h1 class="page-subhead-line">您可以分享、展示您的资料 （川大资料网支持上传各种类型的文件，文件大小最大不超过100M）</h1>
+
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                
+                    <form name="upload_form" id="upload_form">
+               <div class="row">
+                  <div class="col-md-12">                     
+         <div class="panel panel-default">
+                        <div class="panel-heading">
+                            	资料上传
+                        </div>
+                        <div class="panel-body">
+                             <div id="wizard">
+                <h2>第一步</h2>
+                <section>
+                    <p>请选择您要上传的文件：</p><hr />
+                    <div class="form-group">
+                        <div class="">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <span class="btn btn-file btn-default">
+                                    <span class="fileupload-new">选择文件</span>
+                                    <span class="fileupload-exists">更换</span>
+                                    <input type="file" name="file" id="file">
+                                </span>
+                                <span class="fileupload-preview"></span>
+                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <h2>第二步</h2>
+                <section>
+                    <p>请选择您上传资料的门类：</p><hr />
+										 <div class="form-group input-group">                                        
+											<span class="input-group-addon" >学院</span>
+											<select name="file_college" type="select-one" id="first" onChange="change()" >
+												<option selected="selected">请选择</option>
+												<option>材料科学与工程学院</option>
+												<option>电气信息学院</option>
+												<option>电子信息学院</option>
+												<option>软件学院</option>
+												<option>法学院</option>
+												<option>高分子科学与工程学院</option>
+												<option>公共管理学院</option>
+												<option>华西公共卫生学院</option>
+												<option>华西口腔医学院</option>
+												<option>华西临床医学院</option>
+												<option>华西药学院</option>
+												<option>化学学院</option>
+												<option>化学工程学院</option>
+												<option>华西基础医学与法医学院</option>
+												<option>计算机学院</option>
+												<option>建筑与环境学院</option>
+												<option>经济学院</option>
+												<option>匹兹堡学院</option>
+												<option>历史文化学院（旅游学院）</option>
+												<option>轻纺与食品学院</option>
+												<option>商学院</option>
+												<option>生命科学学院</option>
+												<option>数学学院</option>
+												<option>水利水电学院</option>
+												<option>外国语学院</option>
+												<option>文学与新闻学院</option>
+												<option>物理科学与技术学院</option>
+												<option>艺术学院</option>
+												<option>制造科学与工程学院</option>
+												<option>空天科学与工程学院</option>												
+											</select>										
+										</div>
+										<div class="form-group input-group">                                       
+											<span class="input-group-addon" >专业</span>
+											<select name="file_major" id="second">
+												<option selected="selected">请选择</option>
+											</select>										
+										</div> 
+                </section>
+
+                <h2>第三步</h2>
+                <section>
+                    <p>请编辑您上传资料的信息：</p><hr />
+
+                    <div class="form-group input-group">
+                    	<span class="input-group-addon">简介</span>
+                   		<input id="file_description" name="file_description" type="text" class="form-control"  placeholder="此资料的简介 " />
+                    </div>
+                    <div class="form-group input-group">
+                    	<span class="input-group-addon">关键词1</span>
+                   		<input id="file_description" name="keyword1" type="text" class="form-control"  placeholder="关键词1 " />
+                    </div>
+                    <div class="form-group input-group">
+                    	<span class="input-group-addon">关键词2</span>
+                   		<input id="file_description" name="keyword2" type="text" class="form-control"  placeholder="关键词2" />
+                    </div>
+                    <div class="form-group input-group">
+                    	<span class="input-group-addon">关键词3</span>
+                   		<input id="file_description" name="keyword3" type="text" class="form-control"  placeholder="关键词3 " />
+                    </div>
+                </section>
+
+                <h2>第四步</h2>
+                <section>
+                    <p><i id="upload_statu">上传文件</i><i id="upload_progress"></i><i id="percent_sign"></i></p>
+                    <%-- <img src="<%=path%>/statics/img/uploadsuccess.png" style="width: 150px;height: 150px;"/> --%>
+                    <input id="upload_button" type="button" class="btn btn-lg btn-primary" onclick="upload()" value="上传"/>
+                </section>
+            </div>
+                             
+                        </div>
+                    </div>
+                 </div>
+                </div>
+                
+                  
+			</form>           
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="<%=path%>/statics/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="<%=path%>/statics/js/bootstrap.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="<%=path%>/statics/js/jquery.metisMenu.js"></script>
+     <!-- WIZARD SCRIPTS -->
+    <script src="<%=path%>/statics/js/wizard/modernizr-2.6.2.min.js"></script>
+    <script src="<%=path%>/statics/js/wizard/jquery.cookie-1.3.1.js"></script>
+    <script src="<%=path%>/statics/js/wizard/jquery.steps.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="<%=path%>/statics/js/custom.js"></script>   
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script src="<%=path%>/statics/js/bootstrap-fileupload.js"></script>
+    <!-- LIST SCRIPTS -->
+    <script src="<%=path%>/statics/js/list.js"></script>
+    <!-- FILE UPLOAD SCRIPTS -->
+    <script src="<%=path%>/statics/js/file-upload.js"></script>
+
+</body>
+</html>
+<% out.flush(); %>

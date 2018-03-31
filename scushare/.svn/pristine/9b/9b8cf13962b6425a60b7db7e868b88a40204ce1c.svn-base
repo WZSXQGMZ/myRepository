@@ -1,0 +1,285 @@
+package com.scushare.file2image;
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jacob.activeX.ActiveXComponent;
+import com.jacob.com.Dispatch;
+import com.jacob.com.Variant;
+
+import javax.imageio.ImageIO;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.ImageType;
+import org.apache.pdfbox.rendering.PDFRenderer;
+
+public class File2Image {
+	
+	static final int wdDoNotSaveChanges = 0;// 不保存待定的更改。  
+    static final int wdFormatPDF = 17;// word转PDF 格式  
+    static final int ppSaveAsPDF = 32;// ppt 转PDF 格式  
+    
+    
+    public static int transform(String filepath){
+        File file = new File(filepath);
+      	String name = file.getName();
+      	String ex = getExtensionName(name);
+      	name = getFileNameNoEx(name);
+      	String source = filepath;
+      	String target = file.getParentFile().getAbsolutePath()+name+".pdf";
+      	
+      	if (ex.equals("pdf")){
+      		
+      		File2Image.parsePdf(file);
+      		return 1;
+      		
+        }else if (ex.equals("doc") || ex.equals("docx")) {
+        	
+      		word2pdf(source, target);
+      		
+      	} else if (ex.equals("xls")||ex.equals("xlsx")) {
+      		
+      		excel2pdf(source, target);
+      		
+      	} else if (ex.equals("ppt")||ex.equals("pptx")) {
+      		
+      		ppt2pdf(source, target);
+      		
+      	}
+
+      	  	File pdffile = new File(target);
+      	  	
+      	  	File2Image.parsePdf(pdffile);
+
+      	return 1;
+    }
+        
+	public static void word2pdf(String source,String target){  
+        System.out.println("启动Word");  
+        long start = System.currentTimeMillis();  
+        ActiveXComponent app = null;  
+        try {  
+         app = new ActiveXComponent("Word.Application");  
+         app.setProperty("Visible", false);  
+        
+         Dispatch docs = app.getProperty("Documents").toDispatch();  
+         System.out.println("打开文档" + source);  
+         Dispatch doc = Dispatch.call(docs,//  
+           "Open", //  
+           source,// FileName  
+           false,// ConfirmConversions  
+           true // ReadOnly  
+           ).toDispatch();  
+        
+         System.out.println("转换文档到PDF " + target);  
+         File tofile = new File(target);  
+         if (tofile.exists()) {  
+          tofile.delete();  
+         }  
+         Dispatch.call(doc,//  
+           "SaveAs", //  
+           target, // FileName  
+           wdFormatPDF);  
+        
+         Dispatch.call(doc, "Close", false);  
+         long end = System.currentTimeMillis();  
+         System.out.println("转换完成..用时：" + (end - start) + "ms.");  
+        } catch (Exception e) {  
+         System.out.println("========Error:文档转换失败：" + e.getMessage());  
+        } finally {  
+         if (app != null)  
+          app.invoke("Quit", wdDoNotSaveChanges);  
+        }  
+       }  
+        
+       public static void ppt2pdf(String source,String target){  
+        System.out.println("启动PPT");  
+        long start = System.currentTimeMillis();  
+        ActiveXComponent app = null;  
+        try {  
+         app = new ActiveXComponent("Powerpoint.Application");  
+         Dispatch presentations = app.getProperty("Presentations").toDispatch();  
+         System.out.println("打开文档" + source);  
+         Dispatch presentation = Dispatch.call(presentations,//  
+           "Open",   
+           source,// FileName  
+           true,// ReadOnly  
+           true,// Untitled 指定文件是否有标题。  
+           false // WithWindow 指定文件是否可见。  
+           ).toDispatch();  
+        
+         System.out.println("转换文档到PDF " + target);  
+         File tofile = new File(target);  
+         if (tofile.exists()) {  
+          tofile.delete();  
+         }  
+         Dispatch.call(presentation,//  
+           "SaveAs", //  
+           target, // FileName  
+           ppSaveAsPDF);  
+        
+         Dispatch.call(presentation, "Close");  
+         long end = System.currentTimeMillis();  
+         System.out.println("转换完成..用时：" + (end - start) + "ms.");  
+        } catch (Exception e) {  
+         System.out.println("========Error:文档转换失败：" + e.getMessage());  
+        } finally {  
+         if (app != null) app.invoke("Quit");  
+        }  
+       }  
+        
+       public static void excel2pdf(String source, String target) {  
+            System.out.println("启动Excel");  
+            long start = System.currentTimeMillis();  
+            ActiveXComponent app = new ActiveXComponent("Excel.Application"); // 启动excel(Excel.Application)  
+            try {  
+            app.setProperty("Visible", false);  
+            Dispatch workbooks = app.getProperty("Workbooks").toDispatch();  
+            System.out.println("打开文档" + source);  
+            Dispatch workbook = Dispatch.invoke(workbooks, "Open", Dispatch.Method, new Object[]{source, new Variant(false),new Variant(false)}, new int[3]).toDispatch();  
+            Dispatch.invoke(workbook, "SaveAs", Dispatch.Method, new Object[] {  
+            target, new Variant(57), new Variant(false),  
+            new Variant(57), new Variant(57), new Variant(false),  
+            new Variant(true), new Variant(57), new Variant(true),  
+            new Variant(true), new Variant(true) }, new int[1]);  
+            Variant f = new Variant(false);  
+            System.out.println("转换文档到PDF " + target);  
+            Dispatch.call(workbook, "Close", f);  
+            long end = System.currentTimeMillis();  
+            System.out.println("转换完成..用时：" + (end - start) + "ms.");  
+            } catch (Exception e) {  
+             System.out.println("========Error:文档转换失败：" + e.getMessage());  
+            }finally {  
+             if (app != null){  
+              app.invoke("Quit", new Variant[] {});  
+             }  
+            }  
+       }
+	
+	
+
+    public static Object parsePdf(File pdfFile) {
+	PDDocument document = null;
+	
+	try {
+	    long start = System.currentTimeMillis();
+	    document = PDDocument.load(pdfFile);
+	    if (document == null) {
+		return null;
+	    }
+	    int size = document.getNumberOfPages();
+	    BufferedImage image = null;
+	    FileOutputStream out = null;
+	    String name = pdfFile.getName();
+	    
+	    name = getFileNameNoEx(name);
+	    String path = pdfFile.getParentFile().getAbsolutePath();
+	    File f =new File(path+File.separator+name);
+	    f.mkdir();
+	    for (int i = 0; i < size; i++) {
+		image = new PDFRenderer(document).renderImageWithDPI(i, 130, ImageType.RGB);
+		out = new FileOutputStream(path+"//"+name+"//" + i + ".jpg");
+		ImageIO.write(image, "jpg", out);
+		out.close();
+	    }
+	    long end = System.currentTimeMillis();
+	    System.out.println("解析成功耗时:" + (end - start) + "ms");
+	} catch (Exception e) {
+	    e.printStackTrace();
+	} finally {
+	    try {
+		if(document != null){
+		    document.close();
+		}
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
+	}
+	return document;
+    }
+    
+    
+    
+    /**
+     * 将宽度相同的图片，竖向追加在一起 ##注意：宽度必须相同,纵向处理图片
+     * 
+     * @param piclist 文件流数组
+     * @param outPath 输出路径
+     */
+    public static void y2Pic(List<BufferedImage> piclist, String outPath) {
+	if (piclist == null || piclist.size() <= 0) {
+	    System.out.println("图片数组为空!");
+	    return;
+	}
+	try {
+		    int height 		= 0, // 总高度
+			    width 		= 0, // 总宽度
+			    _height 	= 0, // 临时的高度 , 或保存偏移高度
+			    __height 	= 0, // 临时的高度，主要保存每个高度
+			    picNum = piclist.size();// 图片的数量
+		    File fileImg = null; // 保存读取出的图片
+		    int[] heightArray = new int[picNum]; // 保存每个文件的高度
+		    BufferedImage buffer = null; // 保存图片流
+		    List<int[]> imgRGB = new ArrayList<int[]>(); // 保存所有的图片的RGB
+		    int[] _imgRGB; // 保存一张图片中的RGB数据
+		    for (int i = 0; i < picNum; i++) {
+		    	buffer = piclist.get(i);
+		    	heightArray[i] = _height = buffer.getHeight();// 图片高度
+				if (i == 0) {
+				    width = buffer.getWidth();// 图片宽度
+				}
+				height += _height; // 获取总高度
+				_imgRGB = new int[width * _height];// 从图片中读取RGB
+				_imgRGB = buffer.getRGB(0, 0, width, _height, _imgRGB, 0, width);
+				imgRGB.add(_imgRGB);
+		    }
+		    _height = 0; // 设置偏移高度为0
+		    // 生成新图片
+		    BufferedImage imageResult = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
+		    for (int i = 0; i < picNum; i++) {
+				__height = heightArray[i];
+				if (i != 0)
+				    _height += __height; // 计算偏移高度
+				imageResult.setRGB(0, _height, width, __height, imgRGB.get(i), 0, width); // 写入流中
+		    }
+		    File outFile = new File(outPath);
+		    ByteArrayOutputStream out = new ByteArrayOutputStream();
+		    ImageIO.write(imageResult, "jpg", out);// 写图片
+		    byte[] b = out.toByteArray();
+		    FileOutputStream output = new FileOutputStream(outFile);
+	    	output.write(b);
+	    	out.close();
+	    	output.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public static String getFileNameNoEx(String filename) { 
+	     if ((filename != null) && (filename.length() > 0)) { 
+	         int dot = filename.lastIndexOf('.'); 
+	         if ((dot >-1) && (dot < (filename.length()))) { 
+	             return filename.substring(0, dot); 
+	         } 
+	     } 
+	     return filename; 
+	 }
+	 
+	 public static String getExtensionName(String filename) {   
+	     if ((filename != null) && (filename.length() > 0)) {   
+	         int dot = filename.lastIndexOf('.');   
+	         if ((dot >-1) && (dot < (filename.length() - 1))) {   
+	             return filename.substring(dot + 1);   
+	         }   
+	     }   
+	     return filename;   
+	 }
+    
+    
+    
+
+}

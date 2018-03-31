@@ -1,0 +1,17 @@
+package com.scushare.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import com.scushare.entity.UserUploadRec;
+
+public interface UserRecMapper {
+	@Select("SELECT file_id,file_name,file_path,file_size,file_up_time FROM file WHERE file_up_user_id=#{user_id} limit #{startIndex},#{limitCount}")
+	List<UserUploadRec> getUploadRecByUid(@Param("user_id") int user_id
+										, @Param("startIndex") int startIndex
+										, @Param("limitCount") int limitCount);
+	@Select("SELECT COUNT(*) FROM file WHERE file_up_user_id=#{user_id}")
+	int getUploadRecCountByUid(@Param("user_id") int user_id);
+}

@@ -1,0 +1,155 @@
+package com.scushare.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.scushare.entity.UserInfo;
+import com.scushare.mapper.UserRecMapper;
+import com.scushare.service.ManagerService;
+
+import scu.pojo.DataFile;
+import com.scushare.utils.*;
+
+@Controller
+public class IndexController {
+	@Autowired
+	private UserRecMapper userRecMapper;
+	@Autowired
+	private ManagerService managerService;
+	
+	@RequestMapping("/index")
+	public String index(){
+		return "index";
+	}
+	@RequestMapping("/document")
+	public String document(){
+		return "document";
+	}
+	@RequestMapping("/searchResult")
+	public String searchResult(){
+		return "searchResult";
+	}
+	
+	@RequestMapping("/preview")
+	public String preview(HttpServletRequest request, Model model){
+		String fileId = request.getParameter("fileID");	
+		if(fileId == null) {
+			return "redirect:/error";
+		}else {
+			//temp
+			DataFile tempFile = null;
+			Map map1=new HashMap();
+			Map map2=new HashMap();
+			Map map3=new HashMap();
+			Map map4=new HashMap();
+			Map map5=new HashMap();
+			List<Map>list = new ArrayList<Map>();
+			String tempFolderName =null;
+			String tempFileType = null;
+			List<String> fileIds = new ArrayList<String>();
+			
+			DataFile file = null;
+			String fileType = null;
+			String FolderName ="";
+			String FolderName2 = "";
+				
+			try{
+				file = managerService.getAccDataInfo(fileId);		 
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("查找准确资料失败！");
+				return "redirect:/error";
+			}
+			System.out.println();
+			FolderName = file.getFilePath();
+			FolderName2 = FolderName.substring(FolderName.lastIndexOf("/")+1,FolderName.lastIndexOf("."));
+			fileType = FileType.judge(FolderName);
+			//请求文档用户信息
+			UserInfo user = userRecMapper.getUserInfoByFileId(fileId);
+			//请求相似文档
+			System.out.println(file.getFileColloge());
+			fileIds = userRecMapper.getFileInfoByCollege(file.getFileColloge(), fileId);
+
+			try{
+				for (int i = 0; i < fileIds.size(); i++) {
+					tempFile = managerService.getAccDataInfo(fileId);
+					tempFolderName = file.getFilePath();
+					tempFileType = FileType.judge(tempFolderName);
+					switch (i) {
+					case 0:
+						map1.put("fileName", tempFile.getFileName());
+						map1.put("fileId", fileId);
+						map1.put("pageNum", tempFile.getFilePageNum());
+						map1.put("fileType", tempFileType);
+						break;
+					case 1:
+						map2.put("fileName", tempFile.getFileName());
+						map2.put("fileId", fileId);
+						map2.put("pageNum", tempFile.getFilePageNum());
+						map2.put("fileType", tempFileType);
+						break;
+					case 2:
+						map3.put("fileName", tempFile.getFileName());
+						map3.put("fileId", fileId);
+						map3.put("pageNum", tempFile.getFilePageNum());
+						map3.put("fileType", tempFileType);
+						break;
+					case 3:
+						map4.put("fileName", tempFile.getFileName());
+						map4.put("fileId", fileId);
+						map4.put("pageNum", tempFile.getFilePageNum());
+						map4.put("fileType", tempFileType);
+						break;
+					case 4:
+						map5.put("fileName", tempFile.getFileName());
+						map5.put("fileId", fileId);
+						map5.put("pageNum", tempFile.getFilePageNum());
+						map5.put("fileType", tempFileType);
+						break;
+					}
+				}
+				list.add(map1);
+				list.add(map2);
+				list.add(map3);
+				list.add(map4);
+				list.add(map5);
+				file = managerService.getAccDataInfo(fileId);		 
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("查找准确资料失败！");
+				return "redirect:/error";
+			}
+			
+			model.addAttribute("fileName", file.getFileName());
+			model.addAttribute("fileIntroduce", file.getFileIntroduction());
+			model.addAttribute("fileCollege", file.getFileColloge());
+			model.addAttribute("fileMajor", file.getFileMajor());
+			model.addAttribute("fileUpTime", file.getFileUpTime());
+			model.addAttribute("fileId", fileId);
+			model.addAttribute("FolderName", FolderName2);
+			model.addAttribute("pageNum", file.getFilePageNum());
+			model.addAttribute("fileType", fileType);
+			model.addAttribute("userName", user.getUser_name());
+			model.addAttribute("userImage", user.getUser_chathead());
+			//推荐相似文档信息
+			model.addAttribute("list", list);
+			
+			
+			System.out.println(user.getUser_chathead());
+			
+			return "preview";
+		}
+		
+	}
+}

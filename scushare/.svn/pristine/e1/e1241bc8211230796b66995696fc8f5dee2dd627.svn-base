@@ -1,0 +1,24 @@
+package com.scushare.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class IndexController {
+	@RequestMapping("/index")
+	public String index(){
+		return "index";
+	}
+	@RequestMapping("/document")
+	public String document(){
+		return "document";
+	}
+	@RequestMapping("/searchResult")
+	public String searchResult(){
+		return "searchResult";
+	}
+	@RequestMapping("/preview")
+	public String preview(){
+		return "preview";
+	}
+}

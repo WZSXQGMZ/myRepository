@@ -1,0 +1,14 @@
+package com.scushare.service;
+
+import java.util.List;
+import scu.pojo.User;
+
+public interface PageService {
+		//分页接口
+		public List<User> GetPage(String userCollege,String userMajor,String userName,int currentPage,int pageSize);
+		//也总数
+		public int pageCount(String userCollege,String userMajor,String userName);
+
+		//删除文件记录
+		public boolean datadelet(String userId);
+}
