@@ -1,0 +1,16 @@
+td {  font-family: "宋体"; font-size: 9pt}
+.input1 {
+ BORDER-LEFT: black 1px solid; BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid;BORDER-bottom: black 1px solid}
+.input {
+ BORDER-LEFT: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid;BORDER-bottom: #cccccc 1px solid}
+.botton {  background-color: #FFFFFF; border: 1px #666666 solid; font-family: "宋体"; font-size: 9pt; color: #666666; height: 18px}
+.an {  background-color: #FFFFFF; border: 1px #666666 solid; font-family: "宋体"; font-size: 9pt; color: #666666; height: 18px}
+a.dh {  font-family: "宋体"; font-size: 9pt; color: #000000; text-decoration: none}
+a.dh:hover {  font-family: "宋体"; font-size: 9pt; color: #7B7B7B; text-decoration: none}
+.9point {  font-family: "宋体"; font-size: 9pt; line-height: 18px}
+a:link {  font-family: "宋体"; font-size: 12px; color: #000000; text-decoration: none}
+a:hover {  font-family: "宋体"; font-size: 12px; color: #999999; text-decoration: underline}
+a:visited {  font-family: "宋体"; font-size: 12px; color: #000000; text-decoration: none}
+.warn{
+	color:#a94442;margin-bottom:25px;height:22px;line-height:22px;
+}
