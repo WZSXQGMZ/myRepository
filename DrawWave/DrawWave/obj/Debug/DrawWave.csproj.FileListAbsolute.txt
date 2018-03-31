@@ -1,0 +1,9 @@
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\bin\Debug\DrawWave.exe.config
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\bin\Debug\DrawWave.exe
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\bin\Debug\DrawWave.pdb
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Debug\DrawWave.csprojResolveAssemblyReference.cache
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Debug\DrawWave.Properties.Resources.resources
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Debug\DrawWave.csproj.GenerateResource.Cache
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Debug\DrawWave.exe
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Debug\DrawWave.pdb
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Debug\DrawWave.FormMain.resources

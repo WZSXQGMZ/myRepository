@@ -1,0 +1,8 @@
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\bin\Release\DrawWave.exe.config
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\bin\Release\DrawWave.exe
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\bin\Release\DrawWave.pdb
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Release\DrawWave.FormMain.resources
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Release\DrawWave.Properties.Resources.resources
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Release\DrawWave.csproj.GenerateResource.Cache
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Release\DrawWave.exe
+E:\VSWorkSpace\SoftwareStructure\DrawWave\DrawWave\obj\Release\DrawWave.pdb
