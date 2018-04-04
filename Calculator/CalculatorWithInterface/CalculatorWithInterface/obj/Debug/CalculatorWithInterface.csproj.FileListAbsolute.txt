@@ -1,0 +1,9 @@
+G:\Study\大二上\数据结构与算法\Project\CalculatorWithInterface\CalculatorWithInterface\bin\Debug\CalculatorWithInterface.exe.config
+G:\Study\大二上\数据结构与算法\Project\CalculatorWithInterface\CalculatorWithInterface\bin\Debug\CalculatorWithInterface.exe
+G:\Study\大二上\数据结构与算法\Project\CalculatorWithInterface\CalculatorWithInterface\bin\Debug\CalculatorWithInterface.pdb
+G:\Study\大二上\数据结构与算法\Project\CalculatorWithInterface\CalculatorWithInterface\obj\Debug\CalculatorWithInterface.Form1.resources
+G:\Study\大二上\数据结构与算法\Project\CalculatorWithInterface\CalculatorWithInterface\obj\Debug\CalculatorWithInterface.Properties.Resources.resources
+G:\Study\大二上\数据结构与算法\Project\CalculatorWithInterface\CalculatorWithInterface\obj\Debug\CalculatorWithInterface.csproj.GenerateResource.Cache
+G:\Study\大二上\数据结构与算法\Project\CalculatorWithInterface\CalculatorWithInterface\obj\Debug\CalculatorWithInterface.exe
+G:\Study\大二上\数据结构与算法\Project\CalculatorWithInterface\CalculatorWithInterface\obj\Debug\CalculatorWithInterface.pdb
+G:\Study\大二上\数据结构与算法\Project\CalculatorWithInterface\CalculatorWithInterface\obj\Debug\CalculatorWithInterface.csprojResolveAssemblyReference.cache
