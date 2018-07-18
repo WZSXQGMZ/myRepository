@@ -1,0 +1,9 @@
+E:\VSWorkSpace\MultimediaTech\SimplePS\SimplePS\bin\Debug\SimplePS.exe.config
+E:\VSWorkSpace\MultimediaTech\SimplePS\SimplePS\bin\Debug\SimplePS.exe
+E:\VSWorkSpace\MultimediaTech\SimplePS\SimplePS\bin\Debug\SimplePS.pdb
+E:\VSWorkSpace\MultimediaTech\SimplePS\SimplePS\obj\Debug\SimplePS.csprojResolveAssemblyReference.cache
+E:\VSWorkSpace\MultimediaTech\SimplePS\SimplePS\obj\Debug\SimplePS.MainForm.resources
+E:\VSWorkSpace\MultimediaTech\SimplePS\SimplePS\obj\Debug\SimplePS.Properties.Resources.resources
+E:\VSWorkSpace\MultimediaTech\SimplePS\SimplePS\obj\Debug\SimplePS.csproj.GenerateResource.Cache
+E:\VSWorkSpace\MultimediaTech\SimplePS\SimplePS\obj\Debug\SimplePS.exe
+E:\VSWorkSpace\MultimediaTech\SimplePS\SimplePS\obj\Debug\SimplePS.pdb
