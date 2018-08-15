@@ -1,0 +1,64 @@
+package com.scushare.controller;
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.scushare.service.ManagerService;
+
+import scu.pojo.Manager;
+
+@Controller
+
+public class ManagerLoginController {
+	
+	@Autowired
+	private ManagerService managerService;
+	@RequestMapping(value="/Mlogin1")
+	public String login(){
+		
+		return "M-login";
+	}
+	
+	@RequestMapping(value="/Mlogin2",method=RequestMethod.POST)
+	public String  doLogin(@RequestParam String managerName,@RequestParam String managerPassword,HttpServletRequest reque,HttpSession session) throws Exception{
+		System.out.println("Ãû×Ö"+managerName+"ÃÜÂë"+managerPassword);
+		Manager manager = managerService.login(managerName, managerPassword) ;
+		
+		if(null != manager){//µÇÂ½³É¹¦
+			session.setAttribute("managerSession", manager);
+			session.setMaxInactiveInterval(600);
+			return "redirect:/main";
+		}else{
+			
+			reque.setAttribute("error", "ÃÜÂë»òÕËºÅ´íÎó£¡");
+			return "M-login";
+		}
+		
+		
+		
+	}
+	@RequestMapping(value="/main")
+	public String main(){
+		return "Manager_DataQuery";
+	}
+	
+	@RequestMapping(value="/logout")
+	public String logout(HttpServletRequest requset,HttpSession session){
+		session =requset.getSession();
+		if(session !=null){
+		session.removeAttribute("managerSession");
+		} 
+		return "redirect:/Mlogin1";
+		
+		
+		
+		
+	}
+}
